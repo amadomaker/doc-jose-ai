@@ -15,32 +15,7 @@ conhecimento, comunicação entre as peças, stack e hardware.
 Três domínios físicos e lógicos distintos: os componentes de interação, o Raspberry Pi que roda dentro do humanoide (José),
 e o Google Cloud, trocando um número pequeno de mensagens bem definidas entre si.
 
-```mermaid
-graph LR
-  subgraph Sala["Sala de aula"]
-    Tela["Tela + kiosk<br/>(navegador)"]
-    Webcam["Webcam<br/>(visão + mic)"]
-    Botao["Amado Board (ESP32)<br/>botão físico do mic"]
-  end
-
-  subgraph Pi["Raspberry Pi 5"]
-    Servidor["Servidor (FastAPI)"]
-    Chroma["ChromaDB<br/>base vetorial local"]
-  end
-
-  subgraph Cloud["Google Cloud"]
-    Gemini["Gemini Live API<br/>Vertex AI"]
-    Logging["Cloud Logging<br/>→ BigQuery"]
-  end
-
-  Tela <-->|"áudio — WebSocket (contínuo)"| Servidor
-  Webcam -->|"frame USB — só ao fim da pergunta"| Servidor
-  Botao -->|"aperto do botão — HTTP POST"| Servidor
-  Servidor -->|"estado do mic — SSE"| Tela
-  Servidor <-->|"áudio nativo — streaming bidirecional"| Gemini
-  Servidor -->|"busca semântica"| Chroma
-  Servidor -->|"eventos de uso — best-effort"| Logging
-```
+![Diagrama da arquitetura do José](./arquitetura-jose.gif)
 
 ---
 
