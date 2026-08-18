@@ -168,4 +168,4 @@ partir dos mesmos campos, sem precisar reemitir o evento de outro jeito.
 
 ---
 
-*Amado Maker · José · documento vivo, última atualização por este time*
+*Amado Maker · José · última atualização - 18/08/2026*
